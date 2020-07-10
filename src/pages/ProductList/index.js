@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart, FiEdit2 } from 'react-icons/fi';
 import AllProducts from '../../services/products'
 
 import './styles.css';
@@ -27,14 +27,14 @@ function ProductList() {
   function addToCart(product) {
     const productObject = {
       name: product.name,
-      quantity: 1
+      quantity: 1,
+      add: []
     }
     setSelectedItems([...selectedItems, productObject]);
-    console.log(selectedItems);
   }
 
   function removeFromCart(product) {
-    const filteredItems = selectedItems.filter(item => item !== product.name)
+    const filteredItems = selectedItems.filter(item => item.name !== product.name)
     setSelectedItems(filteredItems)
   }
 
@@ -46,11 +46,36 @@ function ProductList() {
   }
   
   function isSelected(product, product2){
-    return product.name === product2;
+    return product.name === product2.name;
   }
+  function upQuantity(product){
+   const newquantity = []
+    selectedItems.map(element => {
+      if(element.name === product.name)
+      element.quantity++
+
+      newquantity.push(element)
+    });
+    setSelectedItems(newquantity)
+  }
+  function downQuantity(product){
+    const newquantity = []
+     selectedItems.map(element => {
+       if(element.name === product.name)
+       if(element.quantity <= 1){
+         return null
+       }else{
+         element.quantity--
+       }
+ 
+       newquantity.push(element)
+     });
+     setSelectedItems(newquantity)
+   }
 
   return (
     <div>
+      <button onClick={() => console.log(selectedItems)}>olá</button>
       <div className="products">
         <ul>
           {products.map((product, id) => (
@@ -64,12 +89,13 @@ function ProductList() {
                   {product.name}
                 </strong>
                 <p className="productPrice">{product.price}</p>
-                {console.log(selectedItems.filter(item => item.name === 'oi')) ? (
+                {selectedItems.filter(item => isSelected(product, item)).length > 0 ? (
                   <div>
-                    <button>+</button>
-                    <p>1</p>
-                    <button> - </button>
+                    <button onClick={() => upQuantity(product)}>+</button>
+                    <p>{selectedItems.filter(item => isSelected(product, item))[0].quantity}</p>
+                    <button onClick={() => downQuantity(product)}> - </button>
                     <button onClick={() => removeFromCart(product)}>x</button>
+                    <button><FiEdit2 size={10} color='#000'/></button>
                   </div>
                 ) : (
                     <button onClick={() => addToCart(product)}>adicionar ao carrinho</button>
