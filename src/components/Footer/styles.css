@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  background-color: #12113d;
+}
+.mediaContainer{
+  position: relative;
+  padding-top: 3%;
+  flex-direction: row;
+}
+.mediaContainer button {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #12113d;
+  color: white;
+  border-color: #12113d;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transition: 0.6s background-color,0.8s border-color;
+}
+
+.mediaContainer button:hover {
+  background-color: #ee4036;
+  border-color: #ee4036;
+}
