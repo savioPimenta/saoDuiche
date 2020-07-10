@@ -9,7 +9,7 @@ import './styles.css';
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [additional, setAdditional] = useState([]);
-  const [btnAdditional, setBtnAdditional] = useState(false)
+  const [btnAdditional, setBtnAdditional] = useState('')
   const [selectedItems, setSelectedItems] = useState([]);
   const [btn, setBtn] = useState(false);
   // eslint-disable-next-line
@@ -67,7 +67,7 @@ function ProductList() {
     })
     console.log(orderText);
     setOrder(orderText)
-    setOrderURL(`https://api.whatsapp.com/send?phone=553798116650&text=Olá, gostaria de ${orderText}`)
+    setOrderURL(`https://api.whatsapp.com/send?phone=553798412315&text=Olá, gostaria de ${orderText}`)
   }
 
   function isSelected(product, product2) {
@@ -107,11 +107,11 @@ function ProductList() {
     });
     setSelectedItems(newquantity)
   }
-  function setAdditionalArea() {
-    setBtnAdditional(true)
+  function setAdditionalArea(product) {
+    setBtnAdditional(product.name)
   }
   function removeAdditionalArea() {
-    setBtnAdditional(false)
+    setBtnAdditional('')
   }
 
   return (
@@ -142,17 +142,14 @@ function ProductList() {
                         product.type === 'Turma da Picanha' ||
                         product.type === 'Turma do Greladão' 
                     ?
-                        <button onClick={setAdditionalArea}><FiEdit2 size={10} color='#000' /></button>
+                        <button onClick={() => setAdditionalArea(product)}><FiEdit2 size={10} color='#000' /></button>
                         : null}
 
                     </div>
                   ) : (
                       <button onClick={() => addToCart(product)}>adicionar ao carrinho</button>
                     )}
-                  {product.type === 'Sanduíches Tradiconais' && btnAdditional ||
-                        product.type === 'Sanduíches Especiais' && btnAdditional||
-                        product.type === 'Turma da Picanha' && btnAdditional||
-                        product.type === 'Turma do Greladão' && btnAdditional
+                  {product.name === btnAdditional
                          ? (
                     <div>
                       {AllAdditional.map(additional => (

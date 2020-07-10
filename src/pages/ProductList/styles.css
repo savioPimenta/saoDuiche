@@ -51,3 +51,7 @@ strong {
   font-size: 16px;
   color: #ee4036
 }
+
+.additional {
+  cursor: not-allowed;
+}
