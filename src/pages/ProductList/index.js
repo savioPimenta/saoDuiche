@@ -44,27 +44,30 @@ function ProductList() {
   }
 
   function handleOrder() {
-    const orderText = JSON.stringify(selectedItems);
-    const removeQuotes = orderText.split('"').join('')
-    const removeStart = removeQuotes.split('[{').join('')
-    const removeEnd = removeStart.split('}]').join(', ')
-    const removeProductEnd = removeEnd.split(']},{').join(' ')
-    const removeQuantity = removeProductEnd.split('quantity:').join('')
-    const removeName = removeQuantity.split('name:').join('');
-    // vc tem q checar se o add tem coisa dentro, 
-    //se tiver vc simplesmente apaga tudo
-    //se não vc substiui por com: 
-    let removeAdd = ''
-    if(removeName.includes('[]')){
-      removeAdd = removeName.split('add:[]').join('')
-    }
-    removeAdd = removeName.split('add:[').join('com:') 
-    const addSpace = removeAdd.split(',').join(', ')
-    const addSpaceAfterDD = addSpace.split(':').join(': ')
-
-    console.log(addSpaceAfterDD);
+    let orderText = ''
+    selectedItems.map((product, i) => {
+      orderText += `${product.quantity} `
+      orderText += product.name
+      if(product.add.length > 0){
+        orderText += ' com: '
+        product.add.map((add, i) => {
+          if(i + 1 === product.add.length){
+            orderText += add
+          }else{
+            orderText += `${add}, `
+          }
+        })
+      }
+      if(i+1 === selectedItems.length){
+        orderText += '.'
+      }else{
+        orderText += ', '
+      }
+      return orderText
+    })
+    console.log(orderText);
     setOrder(orderText)
-    // setOrderURL(`https://api.whatsapp.com/send?phone=553194110059&text=Olá, gostaria de ${orderText}`)
+    setOrderURL(`https://api.whatsapp.com/send?phone=553798116650&text=Olá, gostaria de ${orderText}`)
   }
 
   function isSelected(product, product2) {
@@ -113,7 +116,6 @@ function ProductList() {
 
   return (
     <div>
-      <button onClick={() => console.log(selectedItems)}>olá</button>
       <div className="products">
         <ul>
           {products.map((product, id) => (
@@ -157,6 +159,7 @@ function ProductList() {
                         <button
                           onClick={() => addAdditional(product, additional)}>
                           {additional.name}
+                          {additional.price}
                         </button>
                       ))}
                       <button onClick={removeAdditionalArea}>confirmar</button>
@@ -179,12 +182,12 @@ function ProductList() {
       <>
         {btn === true ?
           <div className="cartBtnContainer">
-            {/* <a href={orderURL}> */}
+            <a href={orderURL}>
               <button className="cartBtn" onClick={handleOrder}>
                 <FiShoppingCart size={15} color="#FFF" className="cartIcon" strokeWidth={3} />
             Finalizar Compra
           </button>
-            {/* </a> */}
+            </a>
           </div>
           : null}
       </>
