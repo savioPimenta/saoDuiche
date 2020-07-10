@@ -48,19 +48,19 @@ function ProductList() {
     selectedItems.map((product, i) => {
       orderText += `${product.quantity} `
       orderText += product.name
-      if(product.add.length > 0){
+      if (product.add.length > 0) {
         orderText += ' com: '
         product.add.map((add, i) => {
-          if(i + 1 === product.add.length){
+          if (i + 1 === product.add.length) {
             orderText += add
-          }else{
+          } else {
             orderText += `${add}, `
           }
         })
       }
-      if(i+1 === selectedItems.length){
+      if (i + 1 === selectedItems.length) {
         orderText += '.'
-      }else{
+      } else {
         orderText += ', '
       }
       return orderText
@@ -87,7 +87,10 @@ function ProductList() {
     const newAdditional = []
     selectedItems.map(element => {
       if (element.name === product.name)
-        element.add.push(additional.name)
+        if (element.add.includes(additional.name))
+          element.add.pop(additional.name)
+        else
+          element.add.push(additional.name)
 
       newAdditional.push(element)
     });
@@ -115,64 +118,85 @@ function ProductList() {
   }
 
   return (
-    <div>
+    <div className="productList">
       <div className="products">
-        <ul>
-          {products.map((product, id) => (
-            <>
-              <li key={product.id} className="product-item">
-                <>
-                  <img src={require('../../assets/headerlogo4.png')} alt="Foto do produto" />
-                  <p className="productInfo">
-                    {product.info}
-                  </p>
-                  <strong className="productName">
-                    {product.name}
-                  </strong>
-                  <p className="productPrice">{product.price}</p>
+        {products.map((product, id) => (
+          <>
+            <div key={product.id} className="product-item col-12 col-md-6 col-lg-3">
+              <div className="productWrapper">
+                <div className="productHeader">
+                  <img src={require('../../assets/sanduiche_1.jpg')} alt="Foto do produto" />
+                </div>
+                <div className="productContentWrapper">
+                  <div className="productContent">
+                    <p className="productInfo">
+                      {product.info}
+                    </p>
+                    <strong className="productName">
+                      {product.name}
+                    </strong>
+                    <p className="productPrice">{product.price}</p>
 
-                  {selectedItems.filter(item => isSelected(product, item)).length > 0 ? (
-                    <div>
-                      <button onClick={() => upQuantity(product)}>+</button>
-                      <p>{selectedItems.filter(item => isSelected(product, item))[0].quantity}</p>
-                      <button onClick={() => downQuantity(product)}> - </button>
-                      <button onClick={() => removeFromCart(product)}>x</button>
-                      {product.type === 'Sanduíches Tradiconais' ||
-                        product.type === 'Sanduíches Especiais' ||
-                        product.type === 'Turma da Picanha' ||
-                        product.type === 'Turma do Greladão' 
-                    ?
-                        <button onClick={() => setAdditionalArea(product)}><FiEdit2 size={10} color='#000' /></button>
-                        : null}
+                    {selectedItems.filter((item, i) => isSelected(product, item)).length > 0 ? (
+                      <div className="actionSheet">
+                        <button className="qtdButtons" onClick={() => downQuantity(product)}> - </button>
+                        <p>{selectedItems.filter(item => isSelected(product, item))[0].quantity}</p>
+                        <button className="qtdButtons" onClick={() => upQuantity(product)}>+</button>
+                        <button className="removeButton" onClick={() => removeFromCart(product)}>x</button>
+                        {product.type === 'Sanduíches Tradiconais' ||
+                          product.type === 'Sanduíches Especiais' ||
+                          product.type === 'Turma da Picanha' ||
+                          product.type === 'Turma do Greladão'
+                          ?
+                          <button className="editButton" onClick={() => setAdditionalArea(product)}><FiEdit2 size={12} color='#0b083c' /></button>
+                          : null}
 
-                    </div>
-                  ) : (
-                      <button onClick={() => addToCart(product)}>adicionar ao carrinho</button>
-                    )}
-                  {product.name === btnAdditional
-                         ? (
-                    <div>
-                      {AllAdditional.map(additional => (
-                        <button
-                          onClick={() => addAdditional(product, additional)}>
-                          {additional.name}
-                          {additional.price}
-                        </button>
-                      ))}
-                      <button onClick={removeAdditionalArea}>confirmar</button>
-                    </div>
-                  ) : null}
-                </>
-              </li>
-              {/* {products.map(product => {
+                      </div>
+                    ) : (
+                        <button className="buttonAdd" onClick={() => addToCart(product)}>adicionar ao carrinho</button>
+                      )}
+                    {product.name === btnAdditional
+                      ? (
+                        <div className="optionsGroup">
+                          {AllAdditional.map(additional => {
+                            var classString = 'aditionalOpt';
+                            if (selectedItems.filter((item, i) => isSelected(product, item)).length > 0) {
+                              const newItem = selectedItems.filter((item, i) => isSelected(product, item))[0].add;
+                              newItem.map(atualItem => {
+                                if (atualItem === additional.name) {
+                                  classString += ' optSelected'
+                                }
+                              })
+                            }
+                            return (
+                              < button
+                                className={classString}
+                                onClick={() => {
+                                  addAdditional(product, additional);
+                                }}>
+                                <div className="spanName">
+                                  <span>{additional.name}</span>
+                                </div>
+                                <span>{additional.price}</span>
+                              </button>
+                            )
+                          }
+                          )}
+                          <button className="buttonAdd" onClick={removeAdditionalArea}>confirmar</button>
+                        </div>
+                      ) : null}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* {products.map(product => {
               const i = 0;
               if(products.length < i + 1)
                 if(products[i+1].type !== product.type)
                   return <span>{products[i+1].type}</span>
             })} */}
-            </>
-          ))}
-        </ul>
+          </>
+        ))}
 
 
       </div>
@@ -188,7 +212,7 @@ function ProductList() {
           </div>
           : null}
       </>
-    </div>
+    </div >
   )
 }
 

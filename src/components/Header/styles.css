@@ -1,4 +1,5 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+.containerWrapper {
   width: 100%;
   height: 20%;
   margin: 0;
@@ -9,31 +10,96 @@
   flex-direction: column;
 }
 
-.imgcontainer{
-  margin-left: 1%;
-  padding-top: 10px;
-}
-img{ 
-  width:525px;
-  height: 300px;
-}
-
-.apresentantion{
-  padding-top: 3%;
+.imgcontainer {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(138, 149, 158, 0.15);
+  -moz-box-shadow: 0px 5px 10px 0px rgba(138, 149, 158, 0.15);
+  box-shadow: 0px 5px 10px 0px rgba(138, 149, 158, 0.15);
 }
 
-.apresentantion h1{
-  padding-top: 0px;
+.headerwrapper {
+  background-color: #faac18e6;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  object-fit: cover;
+}
+
+.apresentantion {
+  padding: 64px 0;
+}
+
+.apresentantion h1 {
   font-family: "ModestoW00-Initials";
   color: #ee4036;
   font-size: 27px;
   cursor: default;
 }
+
+.divisor {
+  width: 64px;
+  height: 3px;
+  border-radius: 100rem;
+  background-color: #faac18;
+  margin: 32px auto;
+}
+
 .apresentantion p {
-  padding-top: 10px;
+  font-family: 'Lato', sans-serif;
   width: 60%;
-  margin: auto ;
-  font-size: 16px;
+  margin: auto;
+  font-size: 13px;
   color: #12113d;
   font-weight: 500;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.arrow span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(45deg);
+  margin: -10px;
+  animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
 }
