@@ -8,6 +8,7 @@ import './styles.css';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
+  // eslint-disable-next-line
   const [additional, setAdditional] = useState([]);
   const [btnAdditional, setBtnAdditional] = useState('')
   const [selectedItems, setSelectedItems] = useState([]);
@@ -50,6 +51,7 @@ function ProductList() {
       orderText += product.name
       if (product.add.length > 0) {
         orderText += ' com: '
+        // eslint-disable-next-line
         product.add.map((add, i) => {
           if (i + 1 === product.add.length) {
             orderText += add
@@ -74,7 +76,8 @@ function ProductList() {
     return product.name === product2.name;
   }
   function upQuantity(product) {
-    const newquantity = []
+    const newquantity = [];
+    // eslint-disable-next-line
     selectedItems.map(element => {
       if (element.name === product.name)
         element.quantity++
@@ -84,7 +87,8 @@ function ProductList() {
     setSelectedItems(newquantity)
   }
   function addAdditional(product, additional) {
-    const newAdditional = []
+    const newAdditional = [];
+    // eslint-disable-next-line
     selectedItems.map(element => {
       if (element.name === product.name)
         if (element.add.includes(additional.name))
@@ -97,7 +101,8 @@ function ProductList() {
     setSelectedItems(newAdditional)
   }
   function downQuantity(product) {
-    const newquantity = []
+    const newquantity = [];
+    // eslint-disable-next-line
     selectedItems.map(element => {
       if (element.name === product.name)
         if (element.quantity <= 1) {
@@ -125,7 +130,7 @@ function ProductList() {
             <div key={product.id} className="product-item col-12 col-md-6 col-lg-3">
               <div className="productWrapper">
                 <div className="productHeader">
-                  <img src={require('../../assets/sanduiche_1.jpg')} alt="Foto do produto" />
+                  <img src={require('../../assets/'+ product.image)} alt="Foto do produto" />
                 </div>
                 <div className="productContentWrapper">
                   <div className="productContent">
@@ -162,6 +167,7 @@ function ProductList() {
                             var classString = 'aditionalOpt';
                             if (selectedItems.filter((item, i) => isSelected(product, item)).length > 0) {
                               const newItem = selectedItems.filter((item, i) => isSelected(product, item))[0].add;
+                              // eslint-disable-next-line
                               newItem.map(atualItem => {
                                 if (atualItem === additional.name) {
                                   classString += ' optSelected'
@@ -189,16 +195,8 @@ function ProductList() {
                 </div>
               </div>
             </div>
-            {/* {products.map(product => {
-              const i = 0;
-              if(products.length < i + 1)
-                if(products[i+1].type !== product.type)
-                  return <span>{products[i+1].type}</span>
-            })} */}
           </>
         ))}
-
-
       </div>
       <>
         {btn === true ?
