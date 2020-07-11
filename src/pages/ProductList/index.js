@@ -67,7 +67,6 @@ function ProductList() {
       }
       return orderText
     })
-    console.log(orderText);
     setOrder(orderText)
     setOrderURL(`https://api.whatsapp.com/send?phone=553798412315&text=Olá, gostaria de ${orderText}`)
   }
