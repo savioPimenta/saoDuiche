@@ -156,56 +156,56 @@ const AllProducts = [
   }, {
     id: 22,
     type: "Combos",
-    name: "Super",
+    name: "Combo Super",
     image: "sanduiche_1.jpg",
     info: "1 Sãoduíche + 1 Barca de Batatas Fritas + 1 Refrigerante Lata ou suco Lata Pão, Hambúrguer 60g, Queijo, Presunto, Bacon, Ovo, Milho, Batata Palha, alface, tomate e creme de maionese",
     price: "R$30,00"
   }, {
     id: 23,
     type: "Combos",
-    name: "Mega",
+    name: "Combo Mega",
     image: "sanduiche_1.jpg",
     info: "1 Sãoduíche Picanha + 1 Barca de Batatas Fritas + 1 Refrigerante Lata ou suco Lata Pão, Hambúrguer 120g, Queijo, Presunto, Bacon, Ovo, Milho, Batata Palha, alface, tomate e creme de maionese",
     price: "R$34,00"
   }, {
     id: 24,
     type: "Combos",
-    name: "Maxi",
+    name: "Combo Maxi",
     image: "sanduiche_1.jpg",
     info: "	1 Gulosão Grelhado + 1 Barca de Batatas Fritas + 1 Refrigerante Lata ou suco Lata Pão, Hambúrguer Picanha 170g, Frango Desfiado, Queijo, Presunto, Bacon, Ovo, Milho, Batata Palha, alface, tomate e creme de maionese",
     price: "R$39,50"
   }, {
     id: 25,
     type: "Combos",
-    name: "Kids",
+    name: "Combo Kids",
     image: "sanduiche_1.jpg",
     info: "1 X-Burguer + 1 Barca de Batatas Fritas + 1 Refrigerante Lata ou suco Lata Pão, Hambúrguer 60g, Queijo, alface, tomate e creme de maionese",
     price: "R$26,50"
   }, {
     id: 26,
     type: "Combos",
-    name: "Casal",
+    name: "Combo Casal",
     image: "sanduiche_1.jpg",
     info: "2 X- Bacon Egg + 2 Refrigerante Lata ou Suco Lata - Pão, Creme de maionese, Hambúrguer 60g, Queijo, Bacon, alface, tomate e creme de maionese",
     price: "R$35,50"
   }, {
     id: 27,
     type: "Combos",
-    name: "Família",
+    name: "Combo Família",
     image: "sanduiche_1.jpg",
     info: "2 Sãoduíches + 1 Refrigerante Grande + 1 barca de Batatas Fritas - Pão, hambúrguer 60 g, queijo, bacon, presunto, ovo, milho, batata palha,alface, tomate e creme de maionese",
     price: "R$51,00"
   }, {
     id: 28,
     type: "Combos",
-    name: "Super Família",
+    name: "Combo Super Família",
     image: "sanduiche_1.jpg",
     info: "Super Família: 3 Sãoduíches picanha + 1 Refrigerante Grande + 2 barcas de Batatas Fritas - Pão, hambúrguer picanha 120 g, queijo, bacon, presunto, ovo, milho, batata palha, alface, tomate e creme de maionese",
     price: "R$82,00"
   }, {
     id: 29,
     type: "Combos",
-    name: "Galera",
+    name: "Combo Galera",
     image: "sanduiche_1.jpg",
     info: "5 Sãoduíches+ 1 Refrigerante Grande + 3 barcas de Batatas Fritas - Pão, hambúrguer 60 g, queijo, bacon, presunto, ovo, milho, batata palha, alface, tomate e creme de maionese",
     price: "R$115,00"
